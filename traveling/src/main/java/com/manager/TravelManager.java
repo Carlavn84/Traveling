@@ -1,17 +1,26 @@
 package com.manager;
 
-import com.example.traveling.Country;
+import com.dao.CountryDao;
+import com.model.Country;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class TravelManager {
-    private List<Country> countries;
 
-    public List<Country> getCountries(){
-        return  countries;
+private final CountryDao countryDao;
+@Autowired
+    public TravelManager(@Qualifier("fakeDao") CountryDao countryDao) {
+        this.countryDao = countryDao;
     }
 
-    public void setCountries(List<Country> countries){
-        this.countries = countries;
+    public int addCountry(Country country){
+        return countryDao.insertCountry(country);
     }
 }
+
+
+
