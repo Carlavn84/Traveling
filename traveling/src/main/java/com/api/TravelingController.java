@@ -3,47 +3,28 @@ package com.api;
 import com.manager.TravelManager;
 import com.model.Country;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.NonNull;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @RequestMapping("api/v1/country")
 @RestController
 public class TravelingController {
 
-    private final TravelManager travelManager;
-
     @Autowired
-    public TravelingController(TravelManager travelManager) {
-        this.travelManager = travelManager;
-    }
+    private TravelManager travelManager;
 
-    @PostMapping
-    public void addCountry(@RequestBody Country country) {
-        travelManager.addCountry(country);
-    }
+//    @Autowired
+//    public TravelingController(TravelManager travelManager) {
+//        this.travelManager = travelManager;
+//    }
 
     @GetMapping
-    public List<Country> getAllCountries() {
-        return travelManager.getAllCountries();
-    }
-
-    @GetMapping(path = "{id}")
-    public Country getCountryById(@PathVariable("id") UUID id) {
-        return travelManager.getCountryById(id)
-                .orElse(null);
-    }
-
-    @DeleteMapping(path = "{id}")
-    public void deleteCountryById(@PathVariable("id") UUID id) {
-        travelManager.deleteCountry(id);
-    }
-
-    @PutMapping(path = "{id}")
-    public void updateCountry(@PathVariable("id") UUID id, @RequestBody Country countryToUpdate) {
-        travelManager.updateCountry(id, countryToUpdate);
+    public List<String> getAllCountries() {
+        List<Country> allCountries = travelManager.getAllCountries();
+        return allCountries.stream().map(Country::getName).collect(Collectors.toList());
     }
 }
