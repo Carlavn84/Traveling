@@ -22,7 +22,7 @@ public class TravelingController {
     }
 
     @PostMapping
-    public void addCountry(@Validated @NonNull @RequestBody Country country) {
+    public void addCountry(@RequestBody Country country) {
         travelManager.addCountry(country);
     }
 
@@ -43,7 +43,7 @@ public class TravelingController {
     }
 
     @PutMapping(path = "{id}")
-    public void updateCountry(@PathVariable("id") UUID id, @Validated @NonNull @RequestBody Country countryToUpdate) {
+    public void updateCountry(@PathVariable("id") UUID id, @RequestBody Country countryToUpdate) {
         travelManager.updateCountry(id, countryToUpdate);
     }
 }

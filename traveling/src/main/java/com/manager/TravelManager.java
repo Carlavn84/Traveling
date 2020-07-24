@@ -13,30 +13,31 @@ import java.util.UUID;
 @Service
 public class TravelManager {
 
-private final CountryDao countryDao;
-@Autowired
+    private final CountryDao countryDao;
+
+    @Autowired
     public TravelManager(@Qualifier("fakeDao") CountryDao countryDao) {
         this.countryDao = countryDao;
     }
 
-    public int addCountry(Country country){
+    public int addCountry(Country country) {
         return countryDao.insertCountry(country);
     }
 
-    public List<Country> getAllCountries(){
-    return countryDao.selectAllCountries();
+    public List<Country> getAllCountries() {
+        return countryDao.selectAllCountries();
     }
 
-    public Optional<Country> getCountryById(UUID id){
-    return countryDao.selectCountryById(id);
+    public Optional<Country> getCountryById(UUID id) {
+        return countryDao.selectCountryById(id);
     }
 
-    public int deleteCountry(UUID id){
-    return countryDao.deleteCountryById(id);
+    public int deleteCountry(UUID id) {
+        return countryDao.deleteCountryById(id);
     }
 
-    public int updateCountry(UUID id, Country newCountry){
-    return countryDao.updateCountryById(id, newCountry);
+    public int updateCountry(UUID id, Country newCountry) {
+        return countryDao.updateCountryById(id, newCountry);
     }
 }
 

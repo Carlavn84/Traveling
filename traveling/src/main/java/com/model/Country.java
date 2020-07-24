@@ -1,9 +1,6 @@
 package com.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnNotWebApplication;
-import org.springframework.lang.NonNull;
-import org.springframework.lang.NonNullFields;
 
 import java.util.UUID;
 

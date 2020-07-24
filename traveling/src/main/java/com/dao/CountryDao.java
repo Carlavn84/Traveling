@@ -12,10 +12,25 @@ public interface CountryDao {
 
     default int insertCountry(Country country){
         UUID id = UUID.randomUUID();
+
         return insertCountry(id, country);
     }
 
     List<Country> selectAllCountries();
+
+    default List<Country> selectAllCountriesDefault(List<Country> countries){
+        UUID id = UUID.randomUUID();
+
+        Country country = new Country(id, "Vietnam");
+        Country country1 = new Country(id, "German");
+        Country country2 = new Country(id, "Netherlands");
+
+        countries.add(country);
+        countries.add(country1);
+        countries.add(country2);
+
+        return  countries;
+    }
 
     Optional<Country> selectCountryById(UUID id);
 

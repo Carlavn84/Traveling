@@ -21,6 +21,9 @@ public class FakeCountryDataAccessService implements CountryDao {
 
     @Override
     public List<Country> selectAllCountries() {
+        if(countries.isEmpty()){
+            return selectAllCountriesDefault(countries);
+        }
         return countries;
     }
 
