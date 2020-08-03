@@ -1,8 +1,7 @@
-package com;
+package nl.noordland19.duong;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 
 @SpringBootApplication
 public class Application {
