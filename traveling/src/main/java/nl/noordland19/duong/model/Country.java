@@ -8,15 +8,14 @@ import javax.persistence.Id;
 @Entity
 public class Country {
 
-    private final String name;
+    private String name;
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
 
-    public Country(String name) {
-        this.name = name;
-    }
+
+
 
     public long getId() {
         return id;

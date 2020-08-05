@@ -1,14 +1,10 @@
 package nl.noordland19.duong.api;
 
-import nl.noordland19.duong.dao.FakeCountryAccessService;
 import nl.noordland19.duong.manager.TravelManager;
 import nl.noordland19.duong.model.Country;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,18 +32,18 @@ public class TravelingController {
     }
 
     @PostMapping
-    public void addCountry(@RequestBody long id, Country country) {
-        travelManager.addCountry(id, country);
+    public Country addCountry(@RequestBody Country country) {
+        return travelManager.saveCountry(country);
     }
 
-     @GetMapping(path = "{id}")
+    @GetMapping(path = "{id}")
     public Country getCountryById(@PathVariable("id") long id) {
-        return travelManager.getCountryById(id)
-                .orElse(null);
+        return travelManager.getCountryById(id);
+
     }
 
     @DeleteMapping(path = "{id}")
     public void deleteCountryById(@PathVariable("id") long id) {
-        travelManager.deleteCountry(id);
+        travelManager.deleteCountryById(id);
     }
 }
